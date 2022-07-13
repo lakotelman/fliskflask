@@ -17,3 +17,11 @@ class Post(db.Model):
     body = db.Column(db.String(500))
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    comments = db.relationship("Post_Comment", backref="post_comment", lazy ="dynamic")
+
+class Post_Comment(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(500))
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id= db.Column(db.Integer, db.ForeignKey("user.id"))
+    post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
