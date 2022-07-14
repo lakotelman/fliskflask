@@ -9,20 +9,13 @@ class User(db.Model):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     password = db.Column(db.String(100))
-    posts = db.relationship("Post", backref="user", lazy="dynamic")
 
 
-class Post(db.Model):
+class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(500))
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    make = db.Column(db.String(25))
+    model = db.Column(db.String(25))
+    year = db.Column(db.Integer)
+    color = db.Column(db.String(25))
+    price = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    comments = db.relationship("Post_Comment", backref="post_comment", lazy="dynamic")
-
-
-class Post_Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(500))
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
