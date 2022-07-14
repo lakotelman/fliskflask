@@ -1,6 +1,81 @@
-{%extends "./layout.html"%}
+{%extends "./layout.html"%} {%block content%}
+<div class="container">
+  <h1>Hello There</h1>
+  <h3>Welcome to Cargslist, {{ user.title()}}.</h3>
+  <div>
+    <h4>Selling a car today?</h4>
 
-{%block content%} 
-<h1>Hello There</h1>
-<h3>This is a home page</h3>
-{%endblock content%} 
+    <form action="http://127.0.0.1:5000/api/post-car" method ="POST">
+      <div class="form-group">
+        <label for="inputYear">Year</label>
+        <input
+          type="text"
+          class="form-control"
+          name="inputYear"
+          id="inputYear"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputMake">Make</label>
+        <input
+          type="text"
+          class="form-control"
+          name="inputMake"
+          id="inputMake"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputModel">Model</label>
+        <input
+          type="text"
+          class="form-control"
+          name="inputModel"
+          id="inputModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputColor">Color</label>
+        <input
+          type="text"
+          class="form-control"
+          name="inputColor"
+          id="inputColor"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputDescription">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          name="inputDescription"
+          id="inputDescription"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputPrice">Price</label>
+        <input
+          type="text"
+          class="form-control"
+          name="inputPrice"
+          id="inputPrice"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% for s in sales %}
+    <div class="card m-2">
+      <div class="card-body">
+        <h4>{{s.year}} {{s.make}} {{s.model}}</h4>
+        <h5>{{s.color}} ${{s.price}}</h5>
+        <p>{{ s.description }}</p>
+        <p></p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <span>{{s.get_user().username}}</span>
+        <span>{{s.date_created.strftime("%B %d, %Y %I:%M %p")}}</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {%endblock content%}
+</div>
