@@ -18,7 +18,7 @@ class Car(db.Model):
     model = db.Column(db.String(25))
     year = db.Column(db.Integer)
     color = db.Column(db.String(25))
-    price = db.Column(db.Integer) 
+    price = db.Column(db.Float) 
     description = db.Column(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 

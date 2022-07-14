@@ -5,7 +5,7 @@
   <div>
     <h4>Selling a car today?</h4>
 
-    <form action="http://127.0.0.1:5000/api/post-car" method ="POST">
+    <form action="http://127.0.0.1:5000/api/post-car" method="POST">
       <div class="form-group">
         <label for="inputYear">Year</label>
         <input
@@ -64,18 +64,21 @@
     </form>
 
     {% for s in sales %}
-    <div class="card m-2">
-      <div class="card-body">
-        <h4>{{s.year}} {{s.make}} {{s.model}}</h4>
-        <h5>{{s.color}} ${{s.price}}</h5>
-        <p>{{ s.description }}</p>
-        <p></p>
-      </div>
-      <div class="card-footer d-flex justify-content-between">
-        <span>{{s.get_user().username}}</span>
-        <span>{{s.date_created.strftime("%B %d, %Y %I:%M %p")}}</span>
+    <div class="container">
+      <div class="card m-2">
+        <div class="card-body">
+          <h4>{{s.year}} {{s.make}} {{s.model}}</h4>
+          <h5>{{s.color}} ${{s.price}}</h5>
+          <p>{{ s.description }}</p>
+          <p></p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <span>{{s.get_user().username}}</span>
+          <span>{{s.date_created.strftime("%B %d, %Y %I:%M %p")}}</span>
+        </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %} {%endblock content%}
+  {%endblock content%}
 </div>

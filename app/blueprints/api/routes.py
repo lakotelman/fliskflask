@@ -12,7 +12,7 @@ def post_car():
     model = request.form["inputModel"]
     color = request.form["inputColor"]
     description = request.form["inputDescription"]
-    price = request.form["inputPrice"]
+    price = float(request.form["inputPrice"])
     user = 1
 
     # instantiate a new post
