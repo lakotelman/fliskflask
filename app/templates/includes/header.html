@@ -27,13 +27,18 @@
       </li>
     </ul>
     <ul class="navbar-nav mt-2 mt-lg-0">
-       
+       {% if not current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('auth.register')}}">Register</a>
         </li>
+        {%else%}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a>
+          {%endif%}
+        </li> 
       </ul>
     </form>
   </div>

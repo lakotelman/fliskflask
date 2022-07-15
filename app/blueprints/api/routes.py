@@ -1,7 +1,8 @@
-from flask import jsonify, request, redirect
+from flask import jsonify, request, redirect, flash
 from . import bp as app
 from app.blueprints.main.models import Car
 from app import db
+from flask_login import current_user
 
 
 @app.route("/post-car", methods=["POST"])
@@ -13,7 +14,7 @@ def post_car():
     color = request.form["inputColor"]
     description = request.form["inputDescription"]
     price = float(request.form["inputPrice"])
-    user = 1
+    user = current_user.id
 
     # instantiate a new post
     new_sale = Car(
@@ -29,4 +30,5 @@ def post_car():
     # add it to the database
     db.session.add(new_sale)
     db.session.commit()
+    flash("New post created", "success")
     return redirect("http://127.0.0.1:5000")
